@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from ..controller.FrameController import FrameController
 
-# Create your views here.
+
+class FramesView(APIView):
+
+    def get(self, request):
+        return FrameController.frames(request)

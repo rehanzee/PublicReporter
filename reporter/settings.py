@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%b8rmuw^!9uk%((9f&5cu=2=ympruv2vb*t*-d!6*q!dhj_o8h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['app.publicrepoter.com', '162.0.233.242', 'localhost']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'reporter.frame',
+    'reporter.api'
 ]
 
 MIDDLEWARE = [
@@ -78,12 +79,28 @@ WSGI_APPLICATION = 'reporter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'public_reporter',
-        'USER': 'reporterDB',
-        'PASSWORD': 'Reporter@123',
-        'HOST': '165.22.223.24',
+        'NAME': 'publicreporter',
+        'USER': 'publicreporter',
+        'PASSWORD': 'PublicReporter!@#',
+        'HOST': '162.0.233.242',
         'PORT': '3306',
     },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'public_reporter',
+    #     'USER': 'reporterDB',
+    #     'PASSWORD': 'Reporter@123',
+    #     'HOST': '165.22.223.24',
+    #     'PORT': '3306',
+    # },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'public_reporter',
+    #     'USER': 'root',
+    #     'PASSWORD': '',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    # },
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
