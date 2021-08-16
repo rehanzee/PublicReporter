@@ -58,7 +58,7 @@ class FrameFile(models.Model):
     frame_media = models.FileField(
         default='frame.mov',
         upload_to='upload/frames',
-        validators=[FileExtensionValidator(allowed_extensions=['mov', 'avi', 'mp4', 'webm', 'mkv'])]
+        validators=[FileExtensionValidator(allowed_extensions=['mov', 'gif', 'png'])]
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
