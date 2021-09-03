@@ -7,7 +7,7 @@ from django_enumfield import enum
 class FrameCategory(models.Model):
     title = models.CharField(max_length=30)
     slug = models.CharField(max_length=30)
-    thumb = models.ImageField(default='thumb.jpg', upload_to='upload/cat_thumb')
+    thumb = models.ImageField(default='thumb.jpg', upload_to='static/media/cat_thumb')
     active = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -28,7 +28,7 @@ class TextPos(enum.Enum):
 class Frame(models.Model):
     category = models.ForeignKey(FrameCategory, on_delete=models.CASCADE, related_name='frame')
     frame_sku = models.CharField(max_length=30)
-    thumb = models.ImageField(default='thumb.jpg', upload_to='upload/frame_thumb')
+    thumb = models.ImageField(default='thumb.jpg', upload_to='static/media/frame_thumb')
     is_text = models.BooleanField(default=0)
     text_pos = enum.EnumField(TextPos, default=TextPos.BOTTOM)
     is_active = models.BooleanField(default=1)
@@ -56,8 +56,8 @@ class FrameFile(models.Model):
     frame = models.ForeignKey(Frame, on_delete=models.CASCADE, related_name='frame_file')
     resolution = enum.EnumField(FrameAspectRatio, default=FrameAspectRatio.R16X9)
     frame_media = models.FileField(
-        default='frame.mov',
-        upload_to='upload/frames',
+        default='frame.gif',
+        upload_to='static/media/frames',
         validators=[FileExtensionValidator(allowed_extensions=['mov', 'gif', 'png'])]
     )
     created_at = models.DateTimeField(auto_now_add=True)
