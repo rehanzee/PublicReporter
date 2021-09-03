@@ -19,8 +19,7 @@ class FrameController(APIView):
             where f.is_active = 1 and ff.resolution = %s"""
         cursor.execute(sql_count, [res])
         post_count = cursor.fetchone()
-        sql = """Select f.id, f.frame_sku, CONCAT('https://app.publicreporter.com/', f.thumb) as thumb, f.is_text, f.text_pos,
-            CONCAT('https://app.publicreporter.com/', ff.frame_media) as frame
+        sql = """Select f.id, f.frame_sku, f.thumb, f.is_text, f.text_pos, ff.frame_media as frame
             from frames f LEFT JOIN frame_files ff on f.id=ff.frame_id where f.is_active = 1 and ff.resolution = %s
             order by f.updated_at desc LIMIT %s OFFSET %s"""
         cursor.execute(sql, [res, page_size, offset])
