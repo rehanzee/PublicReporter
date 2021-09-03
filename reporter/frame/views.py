@@ -4,5 +4,5 @@ from ..controller.FrameController import FrameController
 
 class FramesView(APIView):
 
-    def get(self, request):
-        return FrameController.frames(request)
+    def get(self, request, res):
+        return FrameController.frames(request, res)

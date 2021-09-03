@@ -3,5 +3,5 @@ from ..frame.views import FramesView
 
 
 urlpatterns = [
-    path("get-frames/", FramesView.as_view()),
+    path("get-frames/<int:res>", FramesView.as_view()),
 ]

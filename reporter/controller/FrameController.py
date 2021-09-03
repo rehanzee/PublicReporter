@@ -8,17 +8,22 @@ import json
 class FrameController(APIView):
 
     @classmethod
-    def frames(cls, request):
+    def frames(cls, request, res):
         url_data = request.build_absolute_uri().split("?")
         page = request.GET.get('page')
         page_size = 12
         offset = (int(page) - 1) * page_size
         cursor = connection.cursor()
-        sql_count = """Select count(f.id) from frames f where f.is_active = 0"""
-        cursor.execute(sql_count, [])
+        sql_count = """Select count(f.id) from frames f
+            LEFT JOIN frame_files ff on f.id=ff.frame_id
+            where f.is_active = 1 and ff.resolution = %s"""
+        cursor.execute(sql_count, [res])
         post_count = cursor.fetchone()
-        sql = """Select * from frames f where f.is_active = 0 order by f.updated_at desc LIMIT %s OFFSET %s"""
-        cursor.execute(sql, [page_size, offset])
+        sql = """Select f.id, f.frame_sku, CONCAT('https://app.publicreporter.com/', f.thumb) as thumb, f.is_text, f.text_pos,
+            CONCAT('https://app.publicreporter.com/', ff.frame_media) as frame
+            from frames f LEFT JOIN frame_files ff on f.id=ff.frame_id where f.is_active = 1 and ff.resolution = %s
+            order by f.updated_at desc LIMIT %s OFFSET %s"""
+        cursor.execute(sql, [res, page_size, offset])
         rows = cursor.fetchall()
         result = []
         keys = (
@@ -27,6 +32,7 @@ class FrameController(APIView):
             'thumb',
             'is_text',
             'text_pos',
+            'frame',
         )
 
         for row in rows:
