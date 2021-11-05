@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'publicreporter',
         'USER': 'publicreporter',
         'PASSWORD': 'PublicReporter!@#',
-        'HOST': '162.0.233.242',
+        'HOST': '63.250.33.188',
         'PORT': '3306',
     },
     # 'default': {
