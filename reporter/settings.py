@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'reporter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'publicreporter',
-        'USER': 'publicreporter',
-        'PASSWORD': 'PublicReporter!@#',
-        'HOST': '63.250.33.188',
+        'NAME': 'u902229073_pubrep',
+        'USER': 'u902229073_pubrep',
+        'PASSWORD': 'Xs[]4AZ2^9s',
+        'HOST': '217.21.80.5',
         'PORT': '3306',
     },
     # 'default': {
